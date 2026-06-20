@@ -1,0 +1,6 @@
+{
+  "name": "Bengali Wedding Invitation & Guestbook",
+  "description": "An elegant, minimalist Bengali wedding invitation, itinerary planner, live blessings wall, RSVP tracker, photo hub, and fun mini-games for guests.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

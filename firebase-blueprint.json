@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "Rsvp": {
+      "title": "RSVP",
+      "description": "Represents an RSVP response for wedding attendance",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "attending": { "type": "boolean" },
+        "guestsCount": { "type": "integer" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "attending", "guestsCount", "createdAt"]
+    },
+    "Blessing": {
+      "title": "Blessing",
+      "description": "A blessing message shared by guests on the wall",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "message", "createdAt"]
+    },
+    "Photo": {
+      "title": "Photo",
+      "description": "Represents an uploaded photo memory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "uploadedBy": { "type": "string" },
+        "caption": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["imageUrl", "uploadedBy", "createdAt"]
+    }
+  },
+  "firestore": {
+    "rsvps/{rsvpId}": {
+      "schema": "Rsvp",
+      "description": "Collection of RSVPs"
+    },
+    "blessings/{blessingId}": {
+      "schema": "Blessing",
+      "description": "Collection of blessings and wishes"
+    },
+    "photos/{photoId}": {
+      "schema": "Photo",
+      "description": "Collection of photos"
+    }
+  }
+}

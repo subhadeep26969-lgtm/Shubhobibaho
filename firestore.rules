@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global safety catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reusable helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // RSVP validation
+    function isValidRsvp(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 150
+          && data.attending is bool
+          && data.guestsCount is int && data.guestsCount >= 0 && data.guestsCount <= 50
+          && data.createdAt is string && data.createdAt.size() <= 50;
+    }
+
+    // Blessings validation
+    function isValidBlessing(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 150
+          && data.message is string && data.message.size() > 0 && data.message.size() <= 2000
+          && data.createdAt is string && data.createdAt.size() <= 50;
+    }
+
+    // Photo validation
+    function isValidPhoto(data) {
+      return data.imageUrl is string && data.imageUrl.size() > 0 && data.imageUrl.size() <= 1048576
+          && data.uploadedBy is string && data.uploadedBy.size() > 0 && data.uploadedBy.size() <= 150
+          && (!('caption' in data) || (data.caption is string && data.caption.size() <= 500))
+          && data.createdAt is string && data.createdAt.size() <= 50;
+    }
+
+    match /rsvps/{rsvpId} {
+      allow create: if isValidId(rsvpId) 
+          && isValidRsvp(request.resource.data)
+          && request.resource.data.keys().hasAll(['name', 'attending', 'guestsCount', 'createdAt'])
+          && request.resource.data.keys().size() == 4;
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    match /blessings/{blessingId} {
+      allow create: if isValidId(blessingId)
+          && isValidBlessing(request.resource.data)
+          && request.resource.data.keys().hasAll(['name', 'message', 'createdAt'])
+          && request.resource.data.keys().size() == 3;
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    match /photos/{photoId} {
+      allow create: if isValidId(photoId)
+          && isValidPhoto(request.resource.data)
+          && request.resource.data.keys().hasAll(['imageUrl', 'uploadedBy', 'createdAt'])
+          && (request.resource.data.keys().size() == 3 || (request.resource.data.keys().size() == 4 && 'caption' in request.resource.data));
+      allow read: if true;
+      allow update, delete: if false;
+    }
+  }
+}
