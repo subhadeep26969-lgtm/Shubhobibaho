@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Lora", ui-serif, Georgia, serif;
+  --font-display: "Cinzel", serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Artistic Flair Theme Palette */
+  --color-maroon-50: #fef8f8;
+  --color-maroon-100: #fce6e6;
+  --color-maroon-200: #facaca;
+  --color-maroon-300: #f59e9e;
+  --color-maroon-400: #e66363;
+  --color-maroon-500: #cc3333;
+  --color-maroon-600: #aa1e1e;
+  --color-maroon-700: #931414;
+  --color-maroon-800: #800000; /* Main Maroon */
+  --color-maroon-900: #660000;
+  --color-maroon-950: #3a0000;
+
+  --color-gold-50: #fdfdf0;
+  --color-gold-100: #fbf5db;
+  --color-gold-200: #f7eba3;
+  --color-gold-300: #ebcf2a;
+  --color-gold-400: #d4b216;
+  --color-gold-500: #D4AF37; /* Main Gold */
+  --color-gold-600: #bfa032;
+  --color-gold-700: #9a8023;
+  --color-gold-800: #7d6519;
+  --color-gold-900: #554410;
+  --color-gold-950: #2d2407;
+
+  /* Map standard tailwind red and amber utility classes to our Artistic Maroon & Gold colors */
+  --color-red-50: #fef8f8;
+  --color-red-100: #fce6e6;
+  --color-red-200: #facaca;
+  --color-red-300: #f59e9e;
+  --color-red-400: #e66363;
+  --color-red-500: #800000; /* Red-500 maps to Maroon-800 */
+  --color-red-600: #aa1e1e;
+  --color-red-700: #931414;
+  --color-red-800: #800000; /* Main Maroon mapped to red-800 */
+  --color-red-900: #660000;
+  --color-red-950: #3a0000;
+
+  --color-amber-50: #fdfdf0;
+  --color-amber-100: #fbf5db;
+  --color-amber-200: #f7eba3;
+  --color-amber-300: #ebcf2a;
+  --color-amber-400: #d4b216;
+  --color-amber-500: #D4AF37; /* Main Gold mapped to amber-500 */
+  --color-amber-600: #bfa032; /* Gold dark mapped to amber-600 */
+  --color-amber-700: #9a8023;
+  --color-amber-800: #800000; /* Maroon fallback mapped to amber-800 */
+  --color-amber-900: #660000;
+  --color-amber-950: #3a0000;
+
+  /* Map basic slate/stone and specific standard colors to custom theme tints if appropriate */
+  --color-brand-cream: #FDFBF7;
+  --color-brand-card: #F5F2ED;
+}
+
+body {
+  background-color: var(--color-brand-cream);
+  color: #333333;
+  font-family: var(--font-sans);
+}
+
+/* Custom class for beautiful Bengali cursive/stylized script */
+.bengali-script {
+  font-family: 'Lora', serif;
+  font-weight: 600;
+}
+
+/* Base custom border patterns */
+.alpana-pattern {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCAxMDAgNDAiPjxwYXRoIGQ9Ik0wIDIwIEMyMCAwIDgwIDAgMTAwIDIwIEM4MCA0MCAyMCA0MCAwIDIwIFoiIGZpbGw9IiM4MDAwMDAiLz48L3N2Zz4=');
+  background-repeat: repeat-x;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.emoji-celebration {
+  animation: float 2.5s ease-in-out infinite;
+}
